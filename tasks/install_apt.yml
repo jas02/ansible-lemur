@@ -50,6 +50,6 @@
 - name: clone lemur git repository
   git:
     repo: "https://github.com/Netflix/lemur"
-    dest: /www
+    dest: /www/lemur
     version: "{{ lemur_version }}"
 
