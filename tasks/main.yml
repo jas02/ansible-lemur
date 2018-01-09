@@ -8,6 +8,6 @@
   when: lemur_expand_storage
 
 - import_tasks: install_apt.yml
-  when: (ansible_pkg_mgr == "apt") and (lemur_stat.exists is not defined)
+  when: (ansible_pkg_mgr == "apt") and (not lemur_stat.exists)
 
 - import_tasks: configure_lemur.yml
