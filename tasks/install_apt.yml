@@ -90,5 +90,5 @@
   become_method: su
   become_user: lemur
   environment:
-    TMPPATH: "{{ lemur_basic_directory }}/tmp"
+    TMPDIR: "{{ lemur_basic_directory }}/tmp"
 
