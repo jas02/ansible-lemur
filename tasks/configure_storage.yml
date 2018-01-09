@@ -1,0 +1,20 @@
+---
+- name: create /www directory
+  file:
+    path: /www
+    state: directory
+    owner: root
+    group: root
+
+- name: create logical volume group
+  lvg:
+    vg: "{{ lemur_vg_name }}"
+    pvs: "{{ lemur_pv_device }}"
+    state: present
+
+- name: create logical volume
+  lvol:
+    vg: "{{ lemur_vg_name }}"
+    lv: "{{ lemur_lv_name }}"
+    size: "{{ lemur_lv_size }}"
+

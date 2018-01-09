@@ -1,2 +1,7 @@
 ---
 lemur_version: "0.6.0"
+
+lemur_pv_device: /dev/vdc
+lemur_vg_name: lemur-vg
+lemur_lv_name: lemur
+lemur_lv_size: 100%FREE

@@ -1,4 +1,6 @@
 ---
+- import_tasks: configure_storage.yml
+
 - import_tasks: install_apt.yml
   when: ansible_pkg_mgr == "apt"
 

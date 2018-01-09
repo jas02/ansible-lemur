@@ -1,5 +1,4 @@
 ---
-
 - name: install required packages
   apt:
     name: "{{ item }}"
@@ -40,12 +39,6 @@
     createhome: yes
     home: /home/lemur
 
-- name: create /www directory
-  file:
-    path: /www
-    state: directory
-    owner: lemur
-    group: lemur
 
 - name: clone lemur git repository
   git:
