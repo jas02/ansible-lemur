@@ -11,3 +11,4 @@ lemur_lv_size: "+100%FREE"
 
 lemur_basic_directory: /www
 lemur_clone_directory: "{{ lemur_basic_directory }}/lemur"
+lemur_binary: "{{ lemur_clone_directory }}/bin/lemur"
