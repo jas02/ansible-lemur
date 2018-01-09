@@ -18,3 +18,13 @@
     lv: "{{ lemur_lv_name }}"
     size: "{{ lemur_lv_size }}"
 
+- name: create filesystem
+  filesystem:
+    fstype: "{{ lemur_filesystem }}"
+    dev: "{{ lemur_storage_device }}"
+
+- name: mount logical volume
+  mount:
+    path: /www
+    src: "{{ lemur_storage_device }}"
+
