@@ -68,6 +68,7 @@
 
 - name: create /www/tmp
   file:
+    path: /www/tmp
     state: directory
     owner: root
     group: root
