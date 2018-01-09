@@ -53,3 +53,10 @@
     dest: /www/lemur
     version: "{{ lemur_version }}"
 
+- name: set permission on /www/lemur
+  file:
+    path: /www/lemur
+    state: directory
+    owner: lemur
+    group: lemur
+    recurse: yes
