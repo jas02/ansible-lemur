@@ -28,47 +28,47 @@
 
 - name: add group lemur
   group:
-    name: lemur
+    name: "{{ lemur_user}}"
     state: present
 
 - name: add user lemur
   user:
-    name: lemur
-    group: lemur
+    name: "{{ lemur_user }}"
+    group: "{{ lemur_user }}"
     state: present
     createhome: yes
-    home: /home/lemur
+    home: "{{ lemur_home }}"
 
 
 - name: clone lemur git repository
   git:
     repo: "https://github.com/Netflix/lemur"
-    dest: /www/lemur
+    dest: "{{ lemur_clone_directory }}"
     version: "{{ lemur_version }}"
 
 - name: set permission on /www/lemur
   file:
-    path: /www/lemur
+    path: "{{ lemur_clone_directory }}"
     state: directory
-    owner: lemur
-    group: lemur
+    owner: "{{ lemur_user }}"
+    group: "{{ lemur_user }}"
     recurse: yes
 
 - name: create virtualenv in /www/lemur
   pip:
     name: Autologging
     state: present
-    chdir: /www
+    chdir: "{{ lemur_basic_directory }}"
     virtualenv_python: python3
-    virtualenv: /www/lemur
+    virtualenv: "{{ lemur_clone_directory }}"
     virtualenv_site_packages: no
   become: true
   become_method: su
-  become_user: lemur
+  become_user: "{{ lemur_user }}"
 
-- name: create /www/tmp
+- name: create lemur tmp direcotry
   file:
-    path: /www/tmp
+    path: "{{ lemur_basic_direcory }}/tmp"
     state: directory
     owner: root
     group: root

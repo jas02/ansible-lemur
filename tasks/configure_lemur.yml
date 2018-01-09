@@ -1,6 +1,6 @@
 ---
 - name: generate initial lemur configuration
-  command: /usr/local/bin/venv_exec lemur create_config
+  command: "/usr/local/bin/venv_exec {{ lemur_binary }} create_config"
   args:
     chdir: "{{ lemur_clone_directory }}"
   become: true
