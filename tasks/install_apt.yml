@@ -65,3 +65,11 @@
   become: true
   become_method: su
   become_user: lemur
+
+- name: create /www/tmp
+  file:
+    state: directory
+    owner: root
+    group: root
+    mode: 1777
+
