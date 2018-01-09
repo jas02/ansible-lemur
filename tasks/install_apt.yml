@@ -66,6 +66,7 @@
   become_user: lemur
   become_method: su
   pip:
+    name: logging
     state: present
     virtualenv_python: python3
     virtualenv: /www/lemur
