@@ -1,5 +1,6 @@
 ---
 - import_tasks: configure_storage.yml
+  when: lemur_expand_storage
 
 - import_tasks: install_apt.yml
   when: ansible_pkg_mgr == "apt"
