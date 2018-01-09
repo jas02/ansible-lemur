@@ -60,3 +60,14 @@
     owner: lemur
     group: lemur
     recurse: yes
+
+- name: create virtualenv in /www/lemur
+  become: yes
+  become_user: lemur
+  become_method: su
+  pip:
+    state: present
+    virtualenv_python: python3
+    virtualenv: /www/lemur
+    virtualenv_site_packages: no
+
