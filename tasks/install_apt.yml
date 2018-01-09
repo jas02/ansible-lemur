@@ -43,7 +43,7 @@
 - name: create /www directory
   file:
     path: /www
-    state: direcotry
+    state: directory
     owner: lemur
     group: lemur
 
