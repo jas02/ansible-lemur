@@ -74,3 +74,19 @@
     group: root
     mode: 1777
 
+- name: create wrapper script
+  template:
+    src: venv_exec.j2
+    dest: /usr/local/bin/venv_exec
+    owner: root
+    group: root
+    mode: 0755
+
+- name: install lemur
+  command: /usr/local/bin/venv_exec make release
+  args:
+    chdir: "{{ lemur_clone_directory }}"
+  become: true
+  become_method: su
+  become_user: lemur
+

@@ -8,3 +8,6 @@ lemur_vg_name: lemur-vg
 lemur_lv_name: lemur
 lemur_storage_device: "/dev/dm-0"
 lemur_lv_size: "+100%FREE"
+
+lemur_basic_directory: /www
+lemur_clone_directory: "{{ lemur_basic_directory }}/lemur"
