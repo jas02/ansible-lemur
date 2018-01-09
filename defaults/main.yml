@@ -6,5 +6,5 @@ lemur_filesystem: ext4
 lemur_pv_device: /dev/vdc
 lemur_vg_name: lemur-vg
 lemur_lv_name: lemur
-lemur_storage_device: "/dev/mapper/{{ lemur_vg_name }}-{{ lemur_vg_name }}"
+lemur_storage_device: "/dev/mapper/{{ lemur_vg_name }}-{{ lemur_lv_name }}"
 lemur_lv_size: 100%FREE
