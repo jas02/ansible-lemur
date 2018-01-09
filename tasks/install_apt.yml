@@ -63,7 +63,7 @@
 
 - name: create virtualenv in /www/lemur
   pip:
-    name: logging
+    name: Autologging
     state: present
     chdir: /www
     virtualenv_python: python3
@@ -72,4 +72,3 @@
   become: true
   become_method: su
   become_user: lemur
-
