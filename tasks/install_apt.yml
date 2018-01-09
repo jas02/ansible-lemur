@@ -62,13 +62,14 @@
     recurse: yes
 
 - name: create virtualenv in /www/lemur
-  become: yes
-  become_user: lemur
-  become_method: su
   pip:
     name: logging
     state: present
+    chdir: /www
     virtualenv_python: python3
     virtualenv: /www/lemur
     virtualenv_site_packages: no
+  become: true
+  become_method: su
+  become_user: lemur
 
