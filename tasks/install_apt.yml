@@ -1,0 +1,55 @@
+---
+
+- name: install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+    cache_valid_time: "{{ apt_cache_valid_time | default(3600) }}"
+  with_items:
+    - "nodejs"
+    - "nodejs-legacy"
+    - "python-pip"
+    - "python-dev"
+    - "python3-dev"
+    - "libpq-dev"
+    - "build-essential"
+    - "libssl-dev"
+    - "libffi-dev"
+    - "libsasl2-dev"
+    - "libldap2-dev"
+    - "git"
+    - "supervisor"
+    - "npm"
+
+- name: install python virtualenv
+  pip:
+    name: virtualenv
+    state: present
+
+- name: add group lemur
+  group:
+    name: lemur
+    state: present
+
+- name: add user lemur
+  user:
+    name: lemur
+    group: lemur
+    state: present
+    createhome: yes
+    home: /home/lemur
+
+- name: create /www directory
+  file:
+    path: /www
+    state: direcotry
+    owner: lemur
+    group: lemur
+
+- name: clone lemur git repository
+  git:
+    repo: "https://github.com/Netflix/lemur"
+    dest: /www
+    version: "{{ lemur_version }}"
+
