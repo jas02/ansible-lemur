@@ -27,4 +27,4 @@
   mount:
     path: /www
     src: "{{ lemur_storage_device }}"
-
+    state: mounted
