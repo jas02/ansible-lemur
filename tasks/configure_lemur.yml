@@ -1,0 +1,8 @@
+---
+- name: generate initial lemur configuration
+  command: /usr/local/bin/venv_exec lemur create_config
+  args:
+    chdir: "{{ lemur_clone_directory }}"
+  become: true
+  become_method: su
+  become_user: "{{ lemur_user }}"

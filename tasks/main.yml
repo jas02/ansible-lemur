@@ -4,10 +4,16 @@
     path: "{{ lemur_binary }}"
   register: lemur_stat
 
+- name: check if lemur is already configured
+  stat:
+    path: "{{ lemur_config_file }}"
+  register: lemur_conf_stat
+
 - import_tasks: configure_storage.yml
   when: lemur_expand_storage
 
 - import_tasks: install_apt.yml
-  when: (ansible_pkg_mgr == "apt") and (not lemur_stat.exists)
+  when: (ansible_pkg_mgr == "apt") and (not lemur_stat.stat.exists)
 
 - import_tasks: configure_lemur.yml
+  when: not lemur_conf_stat.stat.exists

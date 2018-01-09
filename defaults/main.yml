@@ -9,6 +9,11 @@ lemur_lv_name: lemur
 lemur_storage_device: "/dev/dm-0"
 lemur_lv_size: "+100%FREE"
 
+
+lemur_user: lemur
+lemur_home: "/home/{{ lemur_user }}"
+lemur_config_file: "{{ lemur_home }}/.lemur/lemur.conf.py"
+
 lemur_basic_directory: /www
 lemur_clone_directory: "{{ lemur_basic_directory }}/lemur"
 lemur_binary: "{{ lemur_clone_directory }}/bin/lemur"

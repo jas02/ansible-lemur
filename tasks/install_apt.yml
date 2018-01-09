@@ -88,7 +88,7 @@
     chdir: "{{ lemur_clone_directory }}"
   become: true
   become_method: su
-  become_user: lemur
+  become_user: "{{ lemur_user }}"
   environment:
     TMPDIR: "{{ lemur_basic_directory }}/tmp"
 
