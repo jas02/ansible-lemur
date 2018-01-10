@@ -15,9 +15,28 @@
     mode: 0644
 
 - name: generate initial lemur configuration
-  command: "/usr/local/bin/venv_exec {{ lemur_binary }} create_config"
+  command: "su - {{ lemur_user }} -c '/usr/local/bin/venv_exec {{ lemur_binary }} create_config'"
   args:
     chdir: "{{ lemur_clone_directory }}"
-  become: true
-  become_method: su
-  become_user: "{{ lemur_user }}"
+
+- name: get flask SECRET_KEY
+  shell: "grep SECRET_KEY {{ lemur_config_file }} | cut -d \' -f 2"
+  register: flask_secret_key
+
+- name: get LEMUR_TOKEN_SECRET
+  shell: "grep LEMUR_TOKEN_SECRET {{ lemur_config_file }} | cut -d \' -f 2"
+  register: lemur_token_secret
+
+- name: get LEMUR_ENCRYPTION_KEYS
+  shell: "grep LEMUR_ENCRYPTION_KEYS {{ lemur_config_file }} | cut -d \' -f 2"
+  register: lemur_encryption_keys
+  
+- name: set LEMUR_ENCRYPTION_KEYS fact
+  set_fact:
+    lemur_encryption_keys_fact: "{{  lemur_encryption_keys.stdout }}"
+
+- name: test template
+  template:
+    src: lemur.conf.j2
+    dest: "{{ lemur_home }}/lemur.conf.j2"
+
