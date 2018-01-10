@@ -19,16 +19,24 @@
   args:
     chdir: "{{ lemur_clone_directory }}"
 
+- name: copy get_lemur_variables.sh script
+  template:
+    src: get_lemur_variables.sh.j2
+    dest: /usr/local/bin/get_lemur_variables.sh
+    owner: root
+    group: root
+    mode: 0755
+
 - name: get flask SECRET_KEY
-  shell: "grep SECRET_KEY {{ lemur_config_file }} | cut -d \' -f 2"
+  shell: "/usr/local/bin/get_lemur_variables.sh SECRET_KEY"
   register: flask_secret_key
 
 - name: get LEMUR_TOKEN_SECRET
-  shell: "grep LEMUR_TOKEN_SECRET {{ lemur_config_file }} | cut -d \' -f 2"
+  shell: "/usr/local/bin/get_lemur_variables.sh LEMUR_TOKEN_SECRET"
   register: lemur_token_secret
 
 - name: get LEMUR_ENCRYPTION_KEYS
-  shell: "grep LEMUR_ENCRYPTION_KEYS {{ lemur_config_file }} | cut -d \' -f 2"
+  shell: "/usr/local/bin/get_lemur_variables.sh LEMUR_ENCRYPTION_KEYS"
   register: lemur_encryption_keys
   
 - name: set LEMUR_ENCRYPTION_KEYS fact

@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+#  Copyright (C) 2018 Tieto Czech s.r.o.
+#  Lumir Jasiok
+#  lumir.jasiok@tieto.cz
+#  http://www.tieto.cz
+#
+#  Managed by Ansible
+#
+
+retval=`grep $1 {{ lemur_config_file }} | cut -d \' -f 2`
+
+echo $retval
+
+exit 0
