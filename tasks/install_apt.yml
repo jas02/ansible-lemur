@@ -68,7 +68,7 @@
 
 - name: create lemur tmp direcotry
   file:
-    path: "{{ lemur_basic_direcory }}/tmp"
+    path: "{{ lemur_basic_directory }}/tmp"
     state: directory
     owner: root
     group: root
