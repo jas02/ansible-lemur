@@ -7,6 +7,13 @@
     group: "{{ lemur_group }}"
     mode: 0750
 
+- name: change lemur.log ownership
+  file:
+    path: "{{ lemur_clone_directory }}/lemur.log"
+    owner: "{{ lemur_user }}"
+    group: "{{ lemur_group }}"
+    mode: 0644
+
 - name: generate initial lemur configuration
   command: "/usr/local/bin/venv_exec {{ lemur_binary }} create_config"
   args:
