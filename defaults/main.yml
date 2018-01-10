@@ -18,3 +18,14 @@ lemur_config_file: "{{ lemur_home }}/.lemur/lemur.conf.py"
 lemur_basic_directory: /www
 lemur_clone_directory: "{{ lemur_basic_directory }}/lemur"
 lemur_binary: "{{ lemur_clone_directory }}/bin/lemur"
+
+# Lemur config variables
+lemur_email: your.email@example.com
+lemur_security_team_email: []
+lemur_default_country: cz
+lemur_default_state: Moravia-Silesian
+lemur_default_location: Ostrava
+lemur_default_organization: Tieto Czech s.r.o.
+lemur_default_organizational_unit: CPS
+lemur_sqlalchemy_database_uri: postgresql://lemur:lemur@localhost:5432/lemur
+lemur_log_level: DEBUG

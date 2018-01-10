@@ -29,7 +29,7 @@
 
 - name: get flask SECRET_KEY
   shell: "/usr/local/bin/get_lemur_variables.sh SECRET_KEY"
-  register: flask_secret_key
+  register: lemur_secret_key
 
 - name: get LEMUR_TOKEN_SECRET
   shell: "/usr/local/bin/get_lemur_variables.sh LEMUR_TOKEN_SECRET"
@@ -39,12 +39,10 @@
   shell: "/usr/local/bin/get_lemur_variables.sh LEMUR_ENCRYPTION_KEYS"
   register: lemur_encryption_keys
   
-- name: set LEMUR_ENCRYPTION_KEYS fact
-  set_fact:
-    lemur_encryption_keys_fact: "{{  lemur_encryption_keys.stdout }}"
-
-- name: test template
+- name: replace lemur configuration file
   template:
-    src: lemur.conf.j2
-    dest: "{{ lemur_home }}/lemur.conf.j2"
-
+    src: lemur.conf.py.j2
+    dest: "{{ lemur_config_file }}"
+    owner: "{{ lemur_user }}"
+    group: "{{ lemur_group }}"
+    mode: 0664
