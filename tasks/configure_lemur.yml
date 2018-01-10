@@ -1,7 +1,7 @@
 ---
 - name: create lemurs .lemur directory
   file:
-    path: "{{ lemur_home }}"/.lemur
+    path: "{{ lemur_home }}/.lemur"
     state: directory
     owner: "{{ lemur_user }}"
     group: "{{ lemur_group }}"
