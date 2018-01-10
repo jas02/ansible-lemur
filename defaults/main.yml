@@ -20,12 +20,30 @@ lemur_clone_directory: "{{ lemur_basic_directory }}/lemur"
 lemur_binary: "{{ lemur_clone_directory }}/bin/lemur"
 
 # Lemur config variables
-lemur_email: your.email@example.com
+lemur_email: lumir.jasiok@tieto.com
 lemur_security_team_email: []
-lemur_default_country: cz
+lemur_default_country: CZ
 lemur_default_state: Moravia-Silesian
 lemur_default_location: Ostrava
 lemur_default_organization: Tieto Czech s.r.o.
 lemur_default_organizational_unit: CPS
-lemur_sqlalchemy_database_uri: postgresql://lemur:lemur@localhost:5432/lemur
 lemur_log_level: DEBUG
+lemur_database_host: localhost
+lemur_database_port: 5432
+lemur_database_user: lemur
+lemur_database_password: lemur
+lemur_database_name: lemur
+lemur_sqlalchemy_database_uri: "postgresql://{{ lemur_database_user }}:{{ lemur_database_password }}@{{ lemur_database_host }}:{{ lemur_database_port }}/lemur"
+
+# Postgresql database setup
+postgresql_users:
+  - name: "{{ lemur_database_user }}"
+    pass: "{{ lemur_database_password }}"
+    encrypted: no
+
+postgresql_databases:
+  - name: "{{ lemur_database_name }}"
+    owner: "{{ lemur_database_user }}"
+    encoding: 'UTF-8'
+    lc_collate: 'en_GB.UTF-8'
+    lc_ctype: 'en_GB.UTF-8'
