@@ -35,15 +35,3 @@ lemur_database_password: lemur
 lemur_database_name: lemur
 lemur_sqlalchemy_database_uri: "postgresql://{{ lemur_database_user }}:{{ lemur_database_password }}@{{ lemur_database_host }}:{{ lemur_database_port }}/lemur"
 
-# Postgresql database setup
-postgresql_users:
-  - name: "{{ lemur_database_user }}"
-    pass: "{{ lemur_database_password }}"
-    encrypted: no
-
-postgresql_databases:
-  - name: "{{ lemur_database_name }}"
-    owner: "{{ lemur_database_user }}"
-    encoding: 'UTF-8'
-    lc_collate: 'en_GB.UTF-8'
-    lc_ctype: 'en_GB.UTF-8'
