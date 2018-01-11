@@ -41,7 +41,7 @@
     mode: 0664
 
 - name: initialize lemur database
-  command: "su - {{ lemur_user }} -c '/usr/local/bin/venv_exec {{ lemur_binary }} init' && touch {{ lemur_clone_directory }}/initialized"
+  command: "su - {{ lemur_user }} -c '/usr/local/bin/venv_exec {{ lemur_binary }} init -p {{ lemur_database_password }}' && touch {{ lemur_clone_directory }}/initialized"
   args:
     chdir: "{{ lemur_clone_directory }}/lemur"
     creates: "{{ lemur_clone_directory }}/initialized"
