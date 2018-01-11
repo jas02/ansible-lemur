@@ -38,4 +38,4 @@ lemur_sqlalchemy_database_uri: "postgresql://{{ lemur_database_user }}:{{ lemur_
 # Lemur Nginx related variables
 lemur_host: 127.0.0.1
 lemur_port: 8000
-lemur_logs_directory: "{{ lemur_clone_directory }}/lemur/logs
+lemur_logs_directory: "{{ lemur_clone_directory }}/lemur/logs"
