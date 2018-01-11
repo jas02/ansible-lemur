@@ -82,6 +82,12 @@
     group: root
     mode: 0755
 
+- name: set npm tmp dir
+  shell: "npm config get tmp {{ lemur_basic_directory }}/tmp"
+  become: true
+  become_method: su
+  become_user: "{{ lemur_user }}"
+
 - name: install lemur
   command: /usr/local/bin/venv_exec make release
   args:
